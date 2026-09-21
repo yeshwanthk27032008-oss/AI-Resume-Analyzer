@@ -250,13 +250,13 @@ def handle_exception(e):
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    print(f"Starting AI Resume Analyzer Flask Backend on http://127.0.0.1:{port}...")
+    print(f"Starting AI Resume Analyzer Flask Backend on http://0.0.0.0:{port}...")
     try:
-        app.run(host="127.0.0.1", port=port, debug=True)
+        app.run(host="0.0.0.0", port=port, debug=True)
     except OSError as err:
         if "10048" in str(err) or "address already in use" in str(err).lower():
             fallback_port = 5001
-            print(f"Port {port} is busy. Automatically starting on http://127.0.0.1:{fallback_port}...")
-            app.run(host="127.0.0.1", port=fallback_port, debug=True)
+            print(f"Port {port} is busy. Automatically starting on http://0.0.0.0:{fallback_port}...")
+            app.run(host="0.0.0.0", port=fallback_port, debug=True)
         else:
             raise err
